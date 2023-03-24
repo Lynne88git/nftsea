@@ -12,6 +12,10 @@ module.exports = {
       },
       gridTemplateRows: {
         header: '64px auto' //for the navbar layout
+      },
+      screens: {
+        xs: { max: '475px' }
+        // => @media (max-width: 475px) { ... }
       }
     }
   }

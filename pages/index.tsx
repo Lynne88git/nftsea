@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import Card from '@/components/card/card'
-import Footer from '@/components/Layout_Items/footer/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,10 +13,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="grid h-screen place-items-center">
-        <Card />
+      <div className="absolute flex flex-col items-center justify-center w-full">
+        <h1 className="text-4xl my-8">Welcome</h1>
       </div>
-      <Footer />
     </>
   )
 }
