@@ -16,13 +16,13 @@ const Layout = ({ children }: LayoutProps) => {
   const mainNavProps: MainNavProps = {
     isNavOpen,
     setIsNavOpen,
-    navItems: defaultNavItems // pass navItems prop here
+    navItems: defaultNavItems
   }
 
   const sideNavProps: SideNavProps = {
     isNavOpen,
     setIsNavOpen,
-    navItems: defaultNavItems // pass navItems prop here
+    navItems: defaultNavItems
   }
 
   return (

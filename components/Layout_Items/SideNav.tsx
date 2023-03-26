@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Logo from '../../public/static/logo.svg'
 import Close from '../../public/static/close.svg'
+import { WalletConnectMetamask } from '../WalletConnect/WalletConnectMetamask'
 
 export interface SideNavProps {
   isNavOpen: boolean
@@ -54,16 +55,10 @@ const SideNav = ({ isNavOpen, setIsNavOpen, navItems }: SideNavProps) => {
           </button>
         </div>
         <nav className="px-12 pb-8 flex-col items-start">
-          {navItems?.map((item) => (
-            <button
-              key={item.label}
-              className="bg-customGray hover:bg-customLightGray text-white font-normal flex py-2 px-4 rounded w-52 my-2 text-left"
-              onClick={() => console.log(`Clicked ${item.label}`)} // added onClick handler
-            >
-              {item.icon}
-              {item.label}
-            </button>
-          ))}
+          <div className="">
+            <WalletConnectMetamask />
+          </div>
+
           <p className="py-4  font-normal">
             Dont have a wallet?
             <a className="ml-2 bg-gradient-to-r from-indigo-600 via-indigo-400 to-pink-500">
