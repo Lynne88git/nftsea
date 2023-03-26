@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction } from 'react'
+import { defaultNavItems } from './defaultNavItems'
+import { NavItem } from './SideNav'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
 import SideNav from './SideNav'
 import Logo from '../../public/static/logo.svg'
 import WalletIcon from '../../public/static/wallet.svg'
@@ -9,9 +9,10 @@ import WalletIcon from '../../public/static/wallet.svg'
 export interface MainNavProps {
   isNavOpen: boolean
   setIsNavOpen: (isOpen: boolean) => void
+  navItems: NavItem[]
 }
 
-const MainNav = ({ isNavOpen, setIsNavOpen }: MainNavProps) => {
+const MainNav = ({ isNavOpen, setIsNavOpen, navItems }: MainNavProps) => {
   return (
     <nav className="flex justify-between items-center p-8">
       <div className="flex items-center">
@@ -40,7 +41,11 @@ const MainNav = ({ isNavOpen, setIsNavOpen }: MainNavProps) => {
           </li>
         </ul>
       </div>
-      <SideNav isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
+      <SideNav
+        isNavOpen={isNavOpen}
+        setIsNavOpen={setIsNavOpen}
+        navItems={navItems}
+      />
     </nav>
   )
 }

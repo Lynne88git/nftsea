@@ -10,6 +10,8 @@
     "prettier-format": "prettier --config .prettierrc '.ts' --write"
   },
   "dependencies": {
+    "@fontsource/cinzel": "^4.5.10",
+    "@fontsource/open-sans": "^4.5.14",
     "@heroicons/react": "^2.0.16",
     "@types/node": "18.15.5",
     "@types/react": "18.0.28",

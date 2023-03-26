@@ -16,6 +16,11 @@ module.exports = {
       screens: {
         xs: { max: '475px' }
         // => @media (max-width: 475px) { ... }
+      },
+      colors: {
+        // Add your custom color here
+        customGray: '#282828',
+        customLightGray: '#444444'
       }
     }
   }

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import Logo from '../../public/static/logo.svg'
 
 const Footer = () => {
   const now = new Date()
@@ -7,7 +8,7 @@ const Footer = () => {
     <footer className="fixed bottom-0 left-0 z-20 w-full p-4 bg-black shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
       <Link href="/">
         <Image
-          src="../static/logo.svg"
+          src={Logo}
           alt="logo"
           className=""
           width={200}

@@ -1,10 +1,29 @@
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+// import { Cinzel_700Bold } from '../public/fonts/Cinzel_700Bold.ttf'
+// import { OpenSans_400Regular, OpenSans_600SemiBold } from '@fontsource/open-sans';
+import { useEthers } from '@usedapp/core'
+import dynamic from 'next/dynamic'
 
-const inter = Inter({ subsets: ['latin'] })
+interface CustomWindow extends Window {
+  ethereum?: any
+}
+
+const WalletInstallation = dynamic(
+  () =>
+    import('@/components/User_Profile/Wallet_Installation/walletInstallation'),
+  { ssr: false }
+)
 
 export default function Home() {
+  const [ethereum, setEthereum] = useState(null)
+  const { activateBrowserWallet, account } = useEthers()
+
+  useEffect(() => {
+    setEthereum((window as CustomWindow).ethereum)
+  }, [])
+
   return (
     <>
       <Head>
@@ -13,8 +32,19 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="absolute flex flex-col items-center justify-center w-full">
-        <h1 className="text-4xl my-8">Welcome</h1>
+      <div className="container">
+        {!ethereum ? <WalletInstallation /> : null}
+      </div>
+      <div>
+        <p>Account: {account}</p>
+        {/* <p>Chain ID: {chainId}</p>
+        <p>Balance: {etherBalance}</p> */}
+      </div>
+      <div>
+        <div>
+          <button onClick={() => activateBrowserWallet()}>Connect</button>
+        </div>
+        {account && <p>Account: {account}</p>}
       </div>
     </>
   )

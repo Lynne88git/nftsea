@@ -1,14 +1,21 @@
 import { useState } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '../../public/static/logo.svg'
+import Close from '../../public/static/close.svg'
 
-interface SideNavProps {
+export interface SideNavProps {
   isNavOpen: boolean
   setIsNavOpen: (isOpen: boolean) => void
+  navItems: NavItem[]
 }
 
-const SideNav = ({ isNavOpen, setIsNavOpen }: SideNavProps) => {
+export interface NavItem {
+  label: string
+  href: string
+  icon: React.ReactElement
+}
+
+const SideNav = ({ isNavOpen, setIsNavOpen, navItems }: SideNavProps) => {
   const handleNavClose = () => {
     setIsNavOpen(false)
   }
@@ -25,56 +32,44 @@ const SideNav = ({ isNavOpen, setIsNavOpen }: SideNavProps) => {
 
       {/* The SideNav content */}
       <aside
-        className={`fixed inset-y-0 right-0 z-50 flex-shrink-0 w-64 transition duration-300 transform bg-black ${
+        className={`fixed inset-y-0 right-0 z-50 flex-shrink-0 w-64 transition duration-300 transform bg-black w-96 ${
           isNavOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="hidden md:flex items-left p-8">
-          <ul className="flex items-center">
-            <li>
-              <button
-                className="p-2 rounded-md flex items-center"
-                onClick={handleNavClose}
-              >
-                <div className="text-white hover:text-gray-300 px-3 py-2 rounded">
-                  Connect Wallet
-                </div>
-                <svg
-                  className="w-6 h-6 text-gray-500"
-                  fill="none"
-                  stroke="white"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </li>
-          </ul>
+        <div className="pl-6 flex-col justify-between w-full">
+          <button
+            className="p-2 rounded-md flex items-center"
+            onClick={handleNavClose}
+          >
+            <div className="text-white px-3 py-2 sm-heading font-bold">
+              Connect Wallet
+            </div>
+            <Image
+              src={Close}
+              alt="close-sidenav"
+              className="ml-12"
+              width={20}
+              height={20}
+            />
+          </button>
         </div>
-        <nav className="px-8 pb-8 md:flex items-center">
-          <ul>
-            <li>
-              <Link href="/">
-                <div className="text-gray-800 hover:text-white">Home</div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/about">
-                <div className="text-gray-800 hover:text-white">About</div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact">
-                <div className="text-gray-800 hover:text-white">Contact</div>
-              </Link>
-            </li>
-          </ul>
+        <nav className="px-12 pb-8 flex-col items-start">
+          {navItems?.map((item) => (
+            <button
+              key={item.label}
+              className="bg-customGray hover:bg-customLightGray text-white font-normal flex py-2 px-4 rounded w-52 my-2 text-left"
+              onClick={() => console.log(`Clicked ${item.label}`)} // added onClick handler
+            >
+              {item.icon}
+              {item.label}
+            </button>
+          ))}
+          <p className="py-4  font-normal">
+            Dont have a wallet?
+            <a className="ml-2 bg-gradient-to-r from-indigo-600 via-indigo-400 to-pink-500">
+              Learn More
+            </a>
+          </p>
         </nav>
       </aside>
     </>
