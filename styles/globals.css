@@ -55,6 +55,14 @@ a {
   text-fill-color: transparent;
 }
 
+.nft-title {
+  font-family: 'Cinzel';
+}
+
+.c-width {
+  width: 257px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
